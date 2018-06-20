@@ -33,7 +33,7 @@ function check_supported_os()
         [ "${VERBOSE}" = "yes" ] && echo "Installing on Ubuntu 16.04"
     elif [ "${OS_DISTRO,,}" = "raspbian" ] && [ ${OS_VERSION} -ge 91 ]; then
         [ "${VERBOSE}" = "yes" ] && echo "Installing on Raspbian Stretch"
-    elif [ "${OS_DISTRO,,}" = "Debian" ] && [ ${OS_VERSION} -ge 91 ]; then
+    elif [ "${OS_DISTRO,,}" = "debian" ] && [ ${OS_VERSION} -ge 91 ]; then
         [ "${VERBOSE}" = "yes" ] && echo "Installing on Debian Stretch"
     elif [ "${OS_DISTRO,,}" = "raspbian" ] && [ ${OS_VERSION} -ge 80 ] && [ ${OS_VERSION} -lt 90 ]; then
         echo -e "${RED} You are running Raspbian Jessie, which is not supported by NCSDK."
