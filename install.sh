@@ -31,10 +31,8 @@ function check_supported_os()
     OS_VERSION="${VERSION:-255}"
     if [ "${OS_DISTRO,,}" = "ubuntu" ] && [ ${OS_VERSION} = 1604 ]; then
         [ "${VERBOSE}" = "yes" ] && echo "Installing on Ubuntu 16.04"
-    elif [ "${OS_DISTRO,,}" = "raspbian" ] && [ ${OS_VERSION} -ge 91 ]; then
-        [ "${VERBOSE}" = "yes" ] && echo "Installing on Raspbian Stretch"
     elif [ "${OS_DISTRO,,}" = "debian" ] && [ ${OS_VERSION} -ge 91 ]; then
-        [ "${VERBOSE}" = "yes" ] && echo "Installing on Debian Stretch"
+        [ "${VERBOSE}" = "yes" ] && echo "Installing on Raspbian Stretch"
     elif [ "${OS_DISTRO,,}" = "raspbian" ] && [ ${OS_VERSION} -ge 80 ] && [ ${OS_VERSION} -lt 90 ]; then
         echo -e "${RED} You are running Raspbian Jessie, which is not supported by NCSDK."
         echo -e "Please upgrade to Raspbian Stretch and then install NCSDK."
@@ -384,7 +382,7 @@ function install_python_dependencies()
             fi  
         fi
         
-    elif [ "${OS_DISTRO,,}" = "raspbian" ] ; then
+    elif [ "${OS_DISTRO,,}" = "debian" ] ; then
         # for Raspian, use apt with python3-* if available
         exec_and_search_errors "$SUDO_PREFIX apt-get $APT_QUIET install -y $(cat "$DIR/requirements_apt_raspbian.txt")"
         exec_and_search_errors "$PIP_PREFIX pip3 install $PIP_QUIET --trusted-host files.pythonhosted.org Cython graphviz scikit-image"
@@ -439,7 +437,7 @@ function find_tensorflow()
 # install_tensorflow - install supported version of tensorflow on system
 function install_tensorflow()
 {
-    if [ "${OS_DISTRO,,}" = "raspbian" ] && [ "${INSTALL_TENSORFLOW}" = "yes" ]; then
+    if [ "${OS_DISTRO,,}" = "debian" ] && [ "${INSTALL_TENSORFLOW}" = "yes" ]; then
         echo -e "${YELLOW}NOTE: TensorFlow is not officially supported on Raspbian Stretch."
         echo -e "      We are installing a specific nightly TensorFlow build from http://ci.tensorflow.org/view/Nightly/job/nightly-pi-python3/"
         echo -e "      for code development and testing. ${NC}"

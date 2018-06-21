@@ -29,7 +29,7 @@ function install_opencv()
         exec_and_search_errors "$SUDO_PREFIX apt-get $APT_QUIET install -y lsb-release"
     fi
     
-    if [[ `lsb_release -d` =~ .*Raspbian.* ]] 
+    if [[ `lsb_release -d` =~ .*Debian.* ]] 
     then 
         echo ""
         echo "************************ Please confirm *******************************"
@@ -37,8 +37,9 @@ function install_opencv()
         echo " You may skip this part of the installation in which case some examples "
         echo " may not work without modifications but the rest of the SDK will still "
         echo " be functional. Select n to skip OpenCV installation or y to install it." 
-        read -p " Continue installing OpenCV (y/n) ? " CONTINUE
-        if [[ "$CONTINUE" == "y" || "$CONTINUE" == "Y" ]]; then
+        # read -p " Continue installing OpenCV (y/n) ? " CONTINUE
+        # if [[ "$CONTINUE" == "y" || "$CONTINUE" == "Y" ]]; then
+        if [1]; then
             echo ""; 
             echo "Installing OpenCV"; 
             echo "";
